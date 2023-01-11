@@ -3,12 +3,12 @@ const router = express.Router()
 
 const Checklist = require('../models/checklist')
 
-router.get('/checklist', (req, res) => {
+router.get('/', (req, res) => {
   console.log('Passou por checklist')
   res.send()
 })
 
-router.post('/checklist', async (req, res) => {
+router.post('/', async (req, res) => {
   let { name } = req.body
 
   try {
@@ -19,7 +19,7 @@ router.post('/checklist', async (req, res) => {
   }
 })
 
-router.get('/checklist/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   console.log(req.params.id)
   res.send(`ID: ${req.params.id}`)
 })
