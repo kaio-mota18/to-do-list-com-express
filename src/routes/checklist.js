@@ -6,8 +6,8 @@ const Checklist = require('../models/checklist') //estou importando o modelo Che
 router.get('/', async (req, res) => {
   //quando na rota / for feito uma requisição do tipo GET, no meu console será informado que passou por checklist
   try {
-    let checklist = await Checklist.find({})
-    res.status(200).json(checklist)
+    let checklists = await Checklist.find({})
+    res.status(200).json(checklists)
   } catch (error) {
     res.status(500).json(error)
   }
@@ -19,8 +19,8 @@ router.post('/', async (req, res) => {
 
   try {
     //ele vai tentar algo
-    let checklist = await Checklist.create({ name }) // a variável checklist vai receber a resposta da criação no banco de dados usando o modelo Checklist que foi importado acima, o parâmetro de criação é justamente name que foi recolhido da requisição
-    res.status(200).json(checklist) // a resposta em res é o status confirmando o sucesso e mandando o json com o que foi criado no banco de dados com o modelo Checklist
+    let checklists = await Checklist.create({ name }) // a variável checklist vai receber a resposta da criação no banco de dados usando o modelo Checklist que foi importado acima, o parâmetro de criação é justamente name que foi recolhido da requisição
+    res.status(200).json(checklists) // a resposta em res é o status confirmando o sucesso e mandando o json com o que foi criado no banco de dados com o modelo Checklist
   } catch (error) {
     res.status(422).json(error)
   }
