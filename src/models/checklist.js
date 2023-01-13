@@ -1,13 +1,13 @@
-// O mongoose é um pacote que permite integrar o MongoDB ao NodeJs
-const mongoose = require('mongoose')
+const mongoose = require('mongoose') //usa-se o mongoose para usar o mongo via node
 
-// A função .Schema permite criar uma pré-estrutura ao banco de dados. Vale ressaltar que o Mongo não exige que a arquitetura do bacno de dados esteja pronta antes do seu efeitvo uso. Entrentanto, caso o usuário deseje criar uma estrutura, usa-se esse método .Schema
 const checklistSchema = mongoose.Schema({
+  //mongoose.Schema permite criar um modelo/formato da coleção
   name: { type: String, required: true },
   tasks: [
+    //cada checklist terá várias tasks. Portanto, é necessário colocar os objetos dentro de um aray para que o sistema possa percorer eles
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Task'
+      type: mongoose.Schema.Types.ObjectId, //essa é a sintaxe para conseguir pegar o id
+      ref: 'Task' //a referência é igual como foi exportado o modelo
     }
   ]
 })

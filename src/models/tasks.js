@@ -1,15 +1,14 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose') //importa a lib para utilizar o mongo via node
 
-const tasksSchema = mongoose.Schema({
-  taskName: { type: String, required: true },
-  done: { type: Boolean, required: true },
+const tasktSchema = mongoose.Schema({
+  name: { type: String, required: true }, //atributo name, seu tipo e ele é mandatório
+  done: { type: Boolean, default: false }, //atributo done, tipo booleano, e se não tiver, quer dizer que eh falso
   checklist: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Checklist',
+    //cada tarefa(task) vai ser associada por referência a uma checklist
+    type: mongoose.Schema.Types.ObjectId, //usa-se essa tipologia para que busque o ID de cada objeto
+    ref: 'Checklist', //a referência é igual como é exportado o modelo
     required: true
   }
 })
 
-// O modelo criado pede dois atributos ao meu objeto: taskName e done. Por sua vez, esses atribuos possuem propriedades: seu tipo (String e Boolean respectivamente, e se são mandatórios)
-
-module.exports = mongoose.model('Tasks', tasksSchema)
+module.exports = mongoose.model('Task', tasktSchema)

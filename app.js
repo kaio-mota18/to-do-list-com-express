@@ -5,7 +5,7 @@ const checkListRouter = require('./src/routes/checklist')
 require('./config/database')
 
 app.use(express.json())
-app.use('./checklists', checkListRouter)
+app.use('/checklists', checkListRouter)
 
 const porta = 3000
 app.listen(porta, () => {
