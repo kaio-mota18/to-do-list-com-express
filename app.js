@@ -1,5 +1,6 @@
 const express = require('express') // biblioteca para importar o express e abrir meu servidor
 const path = require('path') //biblioteca que serve para juntar caminhos ?
+const methodOverride = require('method-override')
 
 const app = express()
 
@@ -10,6 +11,9 @@ const rootRouter = require('./src/routes/index') //a rota responsável por rende
 require('./config/database') //importação das configurações do mongoose com o mongo no documento databse
 
 app.use(express.json()) //usando o método json() existente no express
+app.use(express.urlencoded({ entended: true }))
+app.use(methodOverride('method'))
+
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, 'src/views')) //aqui estou configurando que as views estarão no diretório que se encontra no caminho src/views
 app.set('view engine', 'ejs') // aqui esotu configurando qual o tipo de engine que esotu utilizando
