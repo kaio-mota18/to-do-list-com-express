@@ -12,7 +12,7 @@ require('./config/database') //importação das configurações do mongoose com 
 
 app.use(express.json()) //usando o método json() existente no express
 app.use(express.urlencoded({ entended: true }))
-app.use(methodOverride('method'))
+app.use(methodOverride('_method', { methods: ['POST', 'GET'] }))
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, 'src/views')) //aqui estou configurando que as views estarão no diretório que se encontra no caminho src/views
