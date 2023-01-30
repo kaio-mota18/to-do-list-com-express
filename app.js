@@ -5,13 +5,14 @@ const methodOverride = require('method-override')
 const app = express()
 
 const checkListRouter = require('./src/routes/checklist') //a rota do documento checklist.js sendo importada na variável checklistRouter
+const taskRouter = require('./src/routes/tasks')
 
 const rootRouter = require('./src/routes/index') //a rota responsável por renderizar minhas views sendo importada em rootRouter
 
 require('./config/database') //importação das configurações do mongoose com o mongo no documento databse
 
 app.use(express.json()) //usando o método json() existente no express
-app.use(express.urlencoded({ entended: true }))
+app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method', { methods: ['POST', 'GET'] }))
 
 app.use(express.static(path.join(__dirname, 'public')))
@@ -20,6 +21,7 @@ app.set('view engine', 'ejs') // aqui esotu configurando qual o tipo de engine q
 
 app.use('/', rootRouter) // Estou usando as funções encontradas no documento de rotas
 app.use('/checklists', checkListRouter)
+app.use('./checklists', taskRouter.checklistDependent)
 
 const porta = 3000 //servidor
 app.listen(porta, () => {
