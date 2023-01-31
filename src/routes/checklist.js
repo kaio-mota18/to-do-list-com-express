@@ -64,7 +64,7 @@ router.get('/:id/edit', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    let checklist = await Checklist.findById(req.params.id)
+    let checklist = await Checklist.findById(req.params.id).populate('tasks')
     res.status(200).render('checklists/show', { checklist: checklist })
   } catch (error) {
     res.status(500).render('pages/error', {

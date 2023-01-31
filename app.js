@@ -5,7 +5,7 @@ const methodOverride = require('method-override')
 const app = express()
 
 const checkListRouter = require('./src/routes/checklist') //a rota do documento checklist.js sendo importada na variável checklistRouter
-const taskRouter = require('./src/routes/tasks')
+const taskRouter = require('./src/routes/task')
 
 const rootRouter = require('./src/routes/index') //a rota responsável por renderizar minhas views sendo importada em rootRouter
 
@@ -21,7 +21,7 @@ app.set('view engine', 'ejs') // aqui esotu configurando qual o tipo de engine q
 
 app.use('/', rootRouter) // Estou usando as funções encontradas no documento de rotas
 app.use('/checklists', checkListRouter)
-app.use('./checklists', taskRouter.checklistDependent)
+app.use('/checklists', taskRouter.checklistDependent)
 
 const porta = 3000 //servidor
 app.listen(porta, () => {
