@@ -22,6 +22,7 @@ app.set('view engine', 'ejs') // aqui esotu configurando qual o tipo de engine q
 app.use('/', rootRouter) // Estou usando as funções encontradas no documento de rotas
 app.use('/checklists', checkListRouter)
 app.use('/checklists', taskRouter.checklistDependent)
+app.use('/tasks', taskRouter.simple)
 
 const porta = 3000 //servidor
 app.listen(porta, () => {
