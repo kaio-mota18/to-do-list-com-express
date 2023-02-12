@@ -20,18 +20,16 @@ checklistDependentRoute.get('/:id/tasks/new', async (req, res) => {
 
 simpleRoute.delete('/:id', async (req, res) => {
   try {
-    let task = Task.findByIdAndDelete(req.params.id)
-    let checklist = Checklist.findById(task.checklist)
+    let task = await Task.findByIdAndDelete(req.params.id)
+    let checklist = await Checklist.findById(task.checklist)
     let taskToRemove = checklist.tasks.indexOf(task._id)
-    checklist.tasks.splice(taskToRemove, 1)
+    checklist.tasks.slice(taskToRemove, 1)
     checklist.save()
     res.redirect(`/checklists/${checklist._id}`)
   } catch (error) {
-    res
-      .status(422)
-      .render('pages/error', {
-        errors: 'Erro ao carregar ao deletar a tarefa.'
-      })
+    res.status(422).render('pages/error', {
+      errors: 'Erro ao deletar a tarefa.'
+    })
   }
 })
 
